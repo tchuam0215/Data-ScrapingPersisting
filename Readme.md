@@ -1,7 +1,6 @@
-## Scrapping website data a persisting it in csv, json, sqlite and mysql
+# Scrapping website data a persisting it in csv, json, sqlite and mysql
 
-
-# Steps : 
+## Steps : 
 
 1) Scrap data from the websites : https://cve.mitre.org/data/refs/refmap/source-EXPLOIT-DB.html
 	- download the websites in a .html file
@@ -16,12 +15,12 @@
 4) Delete the data into mysql database
 5) Reload the data into a new database
 
-To run the project : 
+## To run the project in the bash command :
+- $ scrapy crawl CveScrapping 
+- then you check data in json and csv file
 
-in the bash command :
-$ scrapy crawl CveScrapping 
-# then you check data in json and csv file
+you can also do : 
+- sqlite3 vulnerabilities.db
+- select * from vulnerabilities
 
-you can also : 
-# sqlite3 vulnerabilities.db
-# select * from vulnerabilities
+to check the data are correctly added to sqlite embebbed vulnerabilities.db database 
