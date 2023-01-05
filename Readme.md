@@ -1,13 +1,13 @@
-# Scrapping website data a persisting it in csv, json, sqlite and mysql
+# Scraping data from https://cve.mitre.org/data/refs/refmap/source-EXPLOIT-DB.html  and persist them in csv, json format and sqlite, mysql database
 
 ## Steps : 
 
 1) Scrap data from the websites : https://cve.mitre.org/data/refs/refmap/source-EXPLOIT-DB.html
 	- download the websites in a .html file
 
-2) Persiste the data in 
-	- csv file 
-	- json file 
+2) Persists the data in 
+	- csv file format 
+	- json file format
 	- sqlite embebbed database 
 	- mysql database
 
