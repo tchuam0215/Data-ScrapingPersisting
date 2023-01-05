@@ -1,0 +1,2 @@
+USE EXPLOIT_CVE;
+SELECT * FROM exploit_cve 

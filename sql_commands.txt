@@ -1,0 +1,98 @@
+
+# connect to the root user
+mysql> mysql -u root -p 
+
+# If you are logging in on the same machine that MySQL is running on, you can omit the host, and simply use the following:
+$> mysql -h host -u user -p
+
+# channge the root password
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+# to quit the mysql command line interface
+mysql> QUIT
+
+# Creating a new database.  Use a CREATE DATABASE statement:
+mysql> CREATE DATABASE pets;
+
+# show different databases 
+# mysql> SHOW DATABASES;
+
+# Creating a table inside a database.  First, pick the database in which you want to create the table with a USE statement:
+# The USE statement tells MySQL to use pets as the default database for subsequent statements.
+mysql> USE pets
+
+CREATE TABLE cats
+(
+  id              INT unsigned NOT NULL AUTO_INCREMENT, # Unique ID for the record
+  name            VARCHAR(150) NOT NULL,                # Name of the cat
+  owner           VARCHAR(150) NOT NULL,                # Owner of the cat
+  birth           DATE NOT NULL,                        # Birthday of the cat
+  PRIMARY KEY     (id)                                  # Make the id the primary key
+);
+
+# Check if the table has been created with a SHOW TABLES statement:
+mysql> SHOW TABLES;
+
+# DESCRIBE shows information on all columns of a table:
+mysql> DESCRIBE cats;
+
+# Adding records into a table.  Use, for example, an INSERT...VALUES statement:
+INSERT INTO cats ( name, owner, birth) VALUES
+  ( 'Sandy', 'Lennon', '2015-01-03' ),
+  ( 'Cookie', 'Casey', '2013-11-13' ),
+  ( 'Charlie', 'River', '2016-05-21' );
+
+  # Retrieving records from a table.  Use a SELECT statement, and “*” to match all columns:
+  mysql> SELECT * FROM cats;
+
+  # To select specific columns and rows by a certain condition using the WHERE clause:
+  mysql> SELECT name FROM cats WHERE owner = 'Casey';
+
+  # Deleting a record from a table.  Use a DELETE statement to delete a record from a table, specifying the criterion for deletion with the WHERE clause:
+  mysql> DELETE FROM cats WHERE name='Cookie';
+
+  mysql> SELECT * FROM cats;
+
+
+  # Adding or deleting a column from a table.  Use an ALTER TABLE...ADD statement to add a column. You can use, for example, an AFTER clause to specify the location of the new column:
+  mysql> ALTER TABLE cats ADD gender CHAR(1) AFTER name;
+
+  # Use DESCRIBE to check the result:
+  mysql> DESCRIBE cats;
+
+  # SHOW CREATE TABLE shows a CREATE TABLE statement, which provides even more details on the table:
+mysql> SHOW CREATE TABLE cats\G
+
+
+# Use ALTER TABLE...DROP to delete a column:
+mysql> ALTER TABLE cats DROP gender;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE cats;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| id    | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(150)     | NO   |     | NULL    |                |
+| owner | varchar(150)     | NO   |     | NULL    |                |
+| birth | date             | NO   |     | NULL    |                |
++-------+------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+
+# show global variables like 'local_infile';
+
+# Your MySQL server has been started with --secure-file-priv option which limits from which directories you can load files using LOAD DATA INFILE.
+# SHOW VARIABLES LIKE "secure_file_priv";
+
+# database backup, with the command prompt and in the directory 
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin 
+mysqldump.exe -e -uroot -ppassword -hlocalhost EXPLOIT_CVE > C:\Users\tchua\Desktop\DataEng-Projects\Data-ScrappingPersistence\exploit_cve_database_backup.sql
+
+# restore database with mysql utility, Import the dump of your database or table.
+mysql.exe -e -uroot -ppassword -hlocalhost EXPLOIT_CVE < C:\Users\tchua\Desktop\DataEng-Projects\Data-ScrappingPersistence\exploit_cve_database_backup.sql
+
+
+# delete database 
+DROP DATABASE EXPLOIT_CVE;

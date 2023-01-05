@@ -4,7 +4,6 @@ import json
 import os
 import sqlite3
 
-# prints parent directory
 path = os.getcwd()
 parent_dir = os.path.abspath(os.path.join(path, os.pardir))
 current_dir = os.path.dirname(__file__)
